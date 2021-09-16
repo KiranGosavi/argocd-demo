@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: blog-argocd
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: testblog.com
+      http:
+        paths:
+          - path: /
+            backend:  
+              serviceName: blog-argocd
+              servicePort: 80

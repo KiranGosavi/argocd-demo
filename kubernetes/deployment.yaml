@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-argocd
+  labels:
+    app: blog-argocd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blog-argocd
+  template:
+    metadata:
+      labels:
+        app: blog-argocd
+    spec:
+      containers:
+      - env:
+        image: kiro123/nginx-webserver:0.0.6
+        imagePullPolicy: Always
+        name: blog-argocd
+        ports:
+        - containerPort: 80
